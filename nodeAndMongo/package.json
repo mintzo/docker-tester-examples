@@ -1,0 +1,19 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*.spec.js --exit",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.2.3"
+  },
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "docker-tester": "^1.2.1",
+    "mocha": "^6.1.2"
+  }
+}

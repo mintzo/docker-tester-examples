@@ -1,0 +1,29 @@
+version: '3.1'
+networks:
+  test-network:
+    internal: false
+services:
+
+  node-service:
+    image: node
+    working_dir: /service
+    volumes:
+      - ../:/service
+    ports:
+      - 7000:3000
+    command: 'npm start'
+    environment:
+      verificationType: httpServer
+    networks: 
+      - test-network
+
+  mongo-service:
+    image: mongo
+    ports:
+      - 27017
+    environment:
+      verificationType: mongo
+    networks:
+      test-network:
+        aliases:
+          - mongo-ip
