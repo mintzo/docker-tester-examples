@@ -1,0 +1,11 @@
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => res.send('Hello World!'))
+
+app.get('/test', (req, res) => res.send('simple response'))
+
+app.get('/book/:id', (req, res) => res.json({id: req.params.id, name: 'example'}))
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
