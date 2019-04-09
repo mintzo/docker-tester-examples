@@ -10,11 +10,11 @@ const verifications = {
       await axios.get(urlToCheck)
     }
   }
-};
+}
 
 const testingEnvironment = new TestingEnvironment({
   dockerComposeFileLocation: __dirname,
-  dockerFileName: 'test.docker-compose.yml',
+  dockerFileName: 'docker-compose.yml',
   verifications
 });
 
@@ -31,30 +31,30 @@ after(async function () {
 });
 
 // All services are up, before ruining these tests
-describe('Docker-tester',async () => {
+describe('Docker-tester', async () => {
   let serverUrl;
-  // set running service url
-  before(async()=>{
-    const serviceName = 'node-service';
-    serverUrl = `http://localhost:${(await testingEnvironment.getActiveService(serviceName)).ports[0].external}`;
+  // set running service url, and seed the DB
+  before(async () => {
+    const nodeService = await testingEnvironment.getActiveService('node-service');
+    serverUrl = `http://localhost:${nodeService.ports[0].external}`;
   })
 
-  describe('/test', async() => {
+  describe('/test', async () => {
     it('should return sample string', async () => {
       const results = (await axios.get(`${serverUrl}/test`)).data;
       const expectedResults = 'simple response';
       expect(results).to.equal(expectedResults);
     });
   });
-  describe('/book', async() => {
+  describe('/movies', async () => {
     it('should return sample json', async () => {
-      const results = (await axios.get(`${serverUrl}/book/example`)).data;
-      const expectedResults = { id: 'example', name: 'example' };
+      const results = (await axios.get(`${serverUrl}/movies/avengers`)).data;
+      const expectedResults = { id: 'avengers', name: 'example' };
       expect(results).to.deep.equal(expectedResults);
     });
     it('should return sample json', async () => {
-      const results = (await axios.get(`${serverUrl}/book/test`)).data;
-      const expectedResults = { id: 'test', name: 'example' };
+      const results = (await axios.get(`${serverUrl}/movies/spiderman`)).data;
+      const expectedResults = { id: 'spiderman', name: 'example' };
       expect(results).to.deep.equal(expectedResults);
     });
   });

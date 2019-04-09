@@ -6,6 +6,6 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 app.get('/test', (req, res) => res.send('simple response'))
 
-app.get('/book/:id', (req, res) => res.json({id: req.params.id, name: 'example'}))
+app.get('/movies/:id', (req, res) => res.json({ id: req.params.id, name: 'example' }))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

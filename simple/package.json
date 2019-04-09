@@ -1,7 +1,4 @@
 {
-  "name": "simple",
-  "version": "1.0.0",
-  "description": "simple usage of docker-tester with mongo and nodejs server",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/*.spec.js",
@@ -15,7 +12,7 @@
   "devDependencies": {
     "axios": "^0.18.0",
     "chai": "^4.2.0",
-    "docker-tester": "^1.2.0",
+    "docker-tester": "^1.2.1",
     "mocha": "^6.1.2"
   }
 }
